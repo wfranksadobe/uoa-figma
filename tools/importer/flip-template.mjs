@@ -29,7 +29,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '../..');
@@ -43,6 +43,7 @@ const SKIP = path.join(PROG, 'flip-skip.tsv');
 
 const args = process.argv.slice(2);
 const all = args.includes('--all');
+const fromLocal = args.includes('--from-local');
 const dryRun = args.includes('--dry-run');
 const noPublish = args.includes('--no-publish');
 const concurrency = Number((args.find((a) => a.startsWith('--concurrency=')) || '').split('=')[1] || 4);
@@ -79,7 +80,22 @@ function collectFromLocal() {
   return [...new Set(rels)].sort();
 }
 
-let work = all ? collectFromLocal() : explicit;
+// The published query-index is the authoritative list of every news article
+// (the local tree is incomplete). Default `--all` reads it; `--from-local`
+// falls back to walking the local content tree.
+function collectFromIndex() {
+  const url = 'https://main--uoa-figma--wfranksadobe.aem.live/nz/en/news/query-index.json?limit=100000';
+  const out = spawnSync('curl', ['-s', '--compressed', url], { encoding: 'utf8', maxBuffer: 1 << 28 }).stdout;
+  const data = JSON.parse(out).data || [];
+  return data
+    .map((r) => (r.path || '').replace(/^\//, '').replace(/\.html$/, ''))
+    .filter((p) => /^nz\/en\/news\/\d{4}\/\d{2}\/\d{2}\//.test(p))
+    .sort();
+}
+
+let work;
+if (all) work = fromLocal ? collectFromLocal() : collectFromIndex();
+else work = explicit;
 if (offset) work = work.slice(offset);
 if (limit) work = work.slice(0, limit);
 if (!work.length) {
@@ -113,9 +129,13 @@ async function retryCode(cargs, attempt = 0) {
 
 // --- the rewrite --------------------------------------------------------------
 // Replace ONLY the Template metadata cell value `news-article` (exact) with the
-// chosen variant. The metadata block renders as
-//   <div>\n<div>Template</div>\n<div>news-article</div>\n</div>
-const TEMPLATE_CELL = /(<div>\s*Template\s*<\/div>\s*<div>\s*)news-article(\s*<\/div>)/i;
+// chosen variant. The metadata block renders as one of:
+//   <div><div>Template</div><div>news-article</div></div>
+//   <div><div><p>Template</p></div><div><p>news-article</p></div></div>
+// so the label and value may be wrapped in an optional <p>.
+const TEMPLATE_CELL = /(Template\s*(?:<\/p>\s*)?<\/div>\s*<div>\s*(?:<p>\s*)?)news-article(\s*(?:<\/p>\s*)?<\/div>)/i;
+const TEMPLATE_LABEL = /<div>\s*(?:<p>\s*)?Template\s*(?:<\/p>\s*)?<\/div>/i;
+const TEMPLATE_VALUE = /Template\s*(?:<\/p>\s*)?<\/div>\s*<div>\s*(?:<p>\s*)?([^<]*?)\s*(?:<\/p>\s*)?<\/div>/i;
 
 function chooseVariant(html) {
   // Any image anywhere in the article body => default figma (has a lead image);
@@ -128,9 +148,9 @@ async function run(rel) {
   const srcUrl = `https://admin.da.live/source/${ORG}/${SITE}/${rel}.html`;
   const { out: html, err } = await curl([srcUrl]);
   if (!html || err) throw new Error(`read failed: ${err || 'empty'}`);
-  if (!/<div>\s*Template\s*<\/div>/i.test(html)) throw new Error('no Template cell found');
+  if (!TEMPLATE_LABEL.test(html)) throw new Error('no Template cell found');
 
-  const m = html.match(/<div>\s*Template\s*<\/div>\s*<div>\s*([^<]*?)\s*<\/div>/i);
+  const m = html.match(TEMPLATE_VALUE);
   const current = (m && m[1] ? m[1].trim() : '').toLowerCase();
   if (current !== 'news-article') {
     return { skipped: true, reason: `template already "${current}"` };
