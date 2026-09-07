@@ -1,0 +1,28 @@
+.hlx/*
+coverage/*
+logs/*
+node_modules
+.parcel-cache
+
+helix-importer-ui
+.DS_Store
+*.bak
+.idea
+# Ignore .map files in scripts/__dropins__/ directory and all its subdirectories
+scripts/__dropins__/**/*.map
+.env
+
+# Scratch files used when staging content uploads to DA
+.tmp-index.html
+.tmp-articles/
+.tmp-*.html
+
+# Ensure these files are tracked
+!CLAUDE.md
+!AGENTS.md
+migration-work/navigation-validation/
+migration-work/footer-validation/
+tools/importer/.progress/
+
+# Full images archive — committed as split parts under exports/parts/ instead
+exports/uoa-news-images.tar

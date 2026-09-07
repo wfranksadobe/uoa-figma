@@ -1,0 +1,92 @@
+/* University of Auckland pull-quote — matches auckland.ac.nz article quotes:
+   large Inter text with an oversized decorative opening quote mark, and an
+   attribution (bold name + normal org) below. */
+
+.quote {
+  margin: 45px 0;
+}
+
+.quote .quote-figure {
+  margin: 0;
+}
+
+.quote .quote-text {
+  position: relative;
+  margin: 0;
+
+  /* Matches the source: 56px left inset for the text, 30px top clearance so the
+     opening mark sits in the space above the first line, and bottom padding to
+     leave room for the closing mark hanging below the last line. */
+  padding: 30px 56px 56px;
+  font-family: inter, sans-serif;
+  font-size: 22px;
+  font-style: normal; /* override the global italic blockquote style */
+  font-weight: 400;
+  line-height: 1.68;
+  text-indent: 0;
+  color: #4a4a4c;
+}
+
+/* Suppress the global blockquote curly-quote pseudo-marks; we draw our own
+   oversized decorative marks on the blockquote instead. */
+.quote .quote-text p::before,
+.quote .quote-text p::after {
+  content: none;
+}
+
+.quote .quote-text p {
+  position: relative;
+  margin: 0;
+}
+
+/* Decorative marks are drawn as fixed-size SVG background images rather than
+   font glyphs. A font character depends on line-height and on which font
+   actually loads — a collapsed line box or a fallback font clips the glyph and
+   makes it look "partially hidden". An SVG in a fixed 60x48 box cannot be
+   clipped by line-height and renders identically on every machine. The marks
+   sit in the gutters (behind the text at z-index:0, but they never reach the
+   text column so they never overlap it). */
+.quote .quote-text::before,
+.quote .quote-text::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  width: 48px;
+  height: 37px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* Opening mark: two rounded "66" commas, top-left in the gutter above the text. */
+.quote .quote-text::before {
+  top: 8px;
+  left: -4px;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 40" fill="%23cecedb"%3E%3Cg transform="rotate(180 27 20)"%3E%3Cpath d="M26 13C26 5.8 20.2 0 13 0S0 5.8 0 13s5.8 13 13 13c1.8 0 3.6-.4 5.2-1.1-1.4 7.2-7.1 12.7-15.2 15.2L4.6 40C15.7 36.6 26 27.6 26 15z"/%3E%3Cpath d="M54 13c0-7.2-5.8-13-13-13s-13 5.8-13 13 5.8 13 13 13c1.8 0 3.6-.4 5.2-1.1-1.4 7.2-7.1 12.7-15.2 15.2l1.6 1.9C43.7 36.6 54 27.6 54 15z"/%3E%3C/g%3E%3C/svg%3E');
+}
+
+/* Closing mark: two rounded "99" commas, bottom-right below the text. */
+.quote .quote-text::after {
+  right: -4px;
+  bottom: -8px;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 40" fill="%23cecedb"%3E%3Cpath d="M26 13C26 5.8 20.2 0 13 0S0 5.8 0 13s5.8 13 13 13c1.8 0 3.6-.4 5.2-1.1-1.4 7.2-7.1 12.7-15.2 15.2L4.6 40C15.7 36.6 26 27.6 26 15z"/%3E%3Cpath d="M54 13c0-7.2-5.8-13-13-13s-13 5.8-13 13 5.8 13 13 13c1.8 0 3.6-.4 5.2-1.1-1.4 7.2-7.1 12.7-15.2 15.2l1.6 1.9C43.7 36.6 54 27.6 54 15z"/%3E%3C/svg%3E');
+}
+
+.quote .quote-attribution {
+  margin: 40px 0 0; /* clears the closing mark that hangs below the quote text */
+  padding: 0 14px 0 56px;
+  font-family: inter, sans-serif;
+  font-size: 16px;
+  line-height: 1.69;
+  color: #4a4a4c;
+}
+
+.quote .quote-attribution .quote-name {
+  display: block;
+  font-weight: 700;
+}
+
+.quote .quote-attribution .quote-source {
+  display: block;
+  font-weight: 400;
+}

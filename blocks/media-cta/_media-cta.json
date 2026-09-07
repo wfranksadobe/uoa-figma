@@ -1,0 +1,36 @@
+{
+  "definitions": [
+    {
+      "title": "Media CTA",
+      "id": "media-cta",
+      "model": "media-cta",
+      "plugins": {
+        "da": {
+          "name": "media-cta",
+          "rows": 1,
+          "columns": 2
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "media-cta",
+      "fields": [
+        {
+          "component": "text",
+          "name": "text",
+          "label": "Message",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "Button link",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

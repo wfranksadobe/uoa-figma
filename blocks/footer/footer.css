@@ -1,0 +1,195 @@
+/* University of Auckland footer
+   Black background, white Inter text — extracted from the source site. */
+
+footer {
+  background-color: #000;
+}
+
+.uoa-footer {
+  --uoa-footer-bg: #000;
+  --uoa-footer-fg: #fff;
+
+  background-color: var(--uoa-footer-bg);
+  color: var(--uoa-footer-fg);
+  font-family: inter, "Noto Sans CJK SC", sans-serif;
+}
+
+/* ---- Main band: logo + link columns ---- */
+.uoa-footer .uoa-footer-main {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) 1.4fr 1.4fr 1fr;
+  gap: 32px;
+  max-width: 1132px;
+  margin: 0 auto;
+  padding: 64px 24px 40px;
+}
+
+.uoa-footer-col h2 {
+  color: var(--uoa-footer-fg);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0 0 9px;
+}
+
+/* logo-uoa-white token: single SVG recolored to white on the dark footer.
+   Plain `img` selector also matches the <img> inside a decorated .icon span. */
+.uoa-footer-brand .icon,
+.uoa-footer-brand img {
+  width: 186px;
+  height: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+.uoa-footer-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.uoa-footer-col li {
+  margin-bottom: 8px;
+}
+
+.uoa-footer-col a {
+  color: var(--uoa-footer-fg);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.uoa-footer-col a:hover {
+  text-decoration: underline;
+}
+
+/* Women's Refuge / extra image link within a column */
+.uoa-footer-extra {
+  margin: 16px 0 0;
+}
+
+.uoa-footer-extra img,
+.uoa-footer-extra .icon {
+  width: 40px;
+  height: auto;
+}
+
+/* Social icons row */
+.uoa-footer-social {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.uoa-footer-social li {
+  margin: 0;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.uoa-footer-social a {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* social-*-white tokens: single SVGs recolored to white on the dark footer */
+.uoa-footer-social .icon,
+.uoa-footer-social img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+.uoa-footer-social a:hover img {
+  opacity: 0.8;
+}
+
+/* ---- Legal bar ---- */
+.uoa-footer-legal {
+  max-width: 1132px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.uoa-footer-legal-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.uoa-footer-legal-links li {
+  display: flex;
+  align-items: center;
+}
+
+.uoa-footer-legal-links li:not(:last-child)::after {
+  content: '|';
+  margin: 0 12px;
+  color: rgb(255 255 255 / 50%);
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.uoa-footer-legal-links a {
+  color: var(--uoa-footer-fg);
+  text-decoration: none;
+  font-size: 14.4px;
+}
+
+.uoa-footer-legal-links a:hover {
+  text-decoration: underline;
+}
+
+/* stylelint-disable no-descending-specificity */
+.uoa-footer-motif,
+.uoa-footer-motif img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+/* stylelint-enable no-descending-specificity */
+
+/* ---- Tablet ---- */
+@media (max-width: 1199px) {
+  .uoa-footer .uoa-footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 24px;
+  }
+
+  .uoa-footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---- Mobile: stacked columns ---- */
+@media (max-width: 599px) {
+  .uoa-footer .uoa-footer-main {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 40px 16px 24px;
+  }
+
+  .uoa-footer-legal {
+    padding: 16px;
+  }
+
+  .uoa-footer-legal-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .uoa-footer-legal-links li:not(:last-child)::after {
+    content: none;
+  }
+}

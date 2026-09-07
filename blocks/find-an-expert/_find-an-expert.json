@@ -1,0 +1,36 @@
+{
+  "definitions": [
+    {
+      "title": "Find an Expert",
+      "id": "find-an-expert",
+      "model": "find-an-expert",
+      "plugins": {
+        "da": {
+          "name": "find-an-expert",
+          "rows": 1,
+          "columns": 2
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "find-an-expert",
+      "fields": [
+        {
+          "component": "reference",
+          "name": "photo",
+          "label": "Expert photo",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "text",
+          "label": "Name + bio",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

@@ -1,0 +1,71 @@
+/* University of Auckland breadcrumb — matches the source (auckland.ac.nz):
+   Inter 16px/400, blue links (#1f2bd4, no underline), navy current page
+   (#0c0c48), "/" separators. Aligned to the page content column like the nav
+   and hero. */
+
+.breadcrumb {
+  --breadcrumb-content-max: 1264px;
+  --breadcrumb-side-pad: 24px;
+  --breadcrumb-gutter: max(
+    var(--breadcrumb-side-pad),
+    calc((100% - var(--breadcrumb-content-max)) / 2 + var(--breadcrumb-side-pad))
+  );
+
+  padding: 36px var(--breadcrumb-gutter) 0;
+}
+
+.breadcrumb nav {
+  max-width: var(--breadcrumb-content-max);
+}
+
+.breadcrumb .breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 0 0 18px;
+  list-style: none;
+}
+
+.breadcrumb .breadcrumb-item {
+  display: flex;
+  align-items: center;
+  font-family: inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* "/" separator before every item except the first. */
+.breadcrumb .breadcrumb-item[data-separator]::before {
+  content: "/";
+  margin: 0 11px 0 30px;
+  color: #0c0c48;
+  font-size: 20px;
+}
+
+.breadcrumb .breadcrumb-item a {
+  font: inherit;
+  color: #1f2bd4;
+  text-decoration: none;
+}
+
+.breadcrumb .breadcrumb-item a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb .breadcrumb-current span {
+  color: #0c0c48;
+}
+
+/* Tighter separator spacing on small screens so long trails don't overflow. */
+@media (max-width: 599px) {
+  .breadcrumb {
+    padding-top: 24px;
+  }
+
+  .breadcrumb .breadcrumb-item[data-separator]::before {
+    margin: 0 8px;
+  }
+}

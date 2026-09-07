@@ -1,0 +1,9 @@
+{
+  "sites": {
+    "aem-boilerplate-commerce": {
+      "previewOrg": "wfranksadobe",
+      "previewSite": "aem-boilerplate-commerce",
+      "contentHostUrl": "https://content.da.live/wfranksadobe/aem-boilerplate-commerce/"
+    }
+  }
+}

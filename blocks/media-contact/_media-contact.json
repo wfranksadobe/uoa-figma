@@ -1,0 +1,68 @@
+{
+  "definitions": [
+    {
+      "title": "Media Contact",
+      "id": "media-contact",
+      "model": "media-contact",
+      "plugins": {
+        "da": {
+          "name": "media-contact",
+          "rows": 5,
+          "columns": 0,
+          "fields": [
+            { "name": "title", "selector": "div:nth-child(1)" },
+            { "name": "name", "selector": "div:nth-child(2)" },
+            { "name": "role", "selector": "div:nth-child(3)" },
+            { "name": "mobile", "selector": "div:nth-child(4)" },
+            { "name": "email", "selector": "div:nth-child(5)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "media-contact",
+      "fields": [
+        {
+          "component": "text",
+          "name": "title",
+          "value": "Media contact",
+          "label": "Block title",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "name",
+          "value": "",
+          "label": "Name",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "role",
+          "value": "",
+          "label": "Role",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "mobile",
+          "value": "",
+          "label": "Mobile number",
+          "valueType": "string",
+          "description": "Rendered with an \"M:\" prefix."
+        },
+        {
+          "component": "text",
+          "name": "email",
+          "value": "",
+          "label": "Email address",
+          "valueType": "string",
+          "description": "Rendered with an \"E:\" prefix as a mailto link."
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

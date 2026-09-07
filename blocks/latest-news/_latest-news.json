@@ -1,0 +1,45 @@
+{
+  "definitions": [
+    {
+      "title": "Latest News",
+      "id": "latest-news",
+      "model": "latest-news",
+      "plugins": {
+        "da": {
+          "name": "latest-news",
+          "rows": 1,
+          "columns": 2
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "latest-news",
+      "fields": [
+        {
+          "component": "text",
+          "name": "heading",
+          "value": "Latest News",
+          "label": "Heading",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "count",
+          "value": "9",
+          "label": "Count",
+          "valueType": "number",
+          "description": "How many cards to show (default 9)."
+        },
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "Browse all link",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

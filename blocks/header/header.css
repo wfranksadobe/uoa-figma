@@ -1,0 +1,652 @@
+/* University of Auckland header/navigation
+   Colours and type extracted from the source site:
+   navy #0C0C48, bright blue #1F2BD4, utility grey #4A4A4C, Inter font. */
+
+/* Let the header row grow to the UoA header's natural height
+   (styles.css pins bare `header` to --nav-height, which is too short). */
+header:has(.uoa-header) {
+  height: auto;
+}
+
+.uoa-header {
+  --uoa-navy: #0c0c48;
+  --uoa-blue: #1f2bd4;
+  --uoa-light-blue: #00caef;
+  --uoa-grey: #4a4a4c;
+  --uoa-white: #fff;
+
+  /* Match the page content column (content wrappers render at max-width
+     1264px with 24px side padding). --uoa-gutter is the distance from the
+     viewport edge to where page content begins on wide screens. */
+  --uoa-content-max: 1264px;
+  --uoa-side-pad: 24px;
+  --uoa-gutter: max(var(--uoa-side-pad), calc((100% - var(--uoa-content-max)) / 2 + var(--uoa-side-pad)));
+
+  position: relative;
+
+  /* CJK fallback so links like "China website 中文网站" render correctly */
+  font-family: inter, "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+  color: var(--uoa-grey);
+  background-color: var(--uoa-white);
+}
+
+/* Static navy accent strip above the header */
+.uoa-header .uoa-accent {
+  height: 38px;
+  background-color: var(--uoa-navy);
+}
+
+/* Header gains a subtle shadow while a megamenu is open (matches source) */
+.uoa-header.is-open .nav-top,
+.uoa-header.is-open .nav-main {
+  box-shadow: rgb(0 0 0 / 15%) 0 2px 4px 0;
+}
+
+/* ---- Brand + utility band ----
+   Logo is absolutely positioned so it spans BOTH the utility and main rows,
+   vertically centred, with the nav content inset to its right (matches source). */
+.uoa-header .nav-brand {
+  position: absolute;
+  left: var(--uoa-gutter); /* aligns with the page content column */
+  top: 38px; /* below the 38px accent strip */
+  bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  z-index: 4;
+}
+
+/* Size by width (the brand mark is a wide lockup); vertically centred in the band.
+   aspect-ratio reserves the height immediately (logo viewBox 822:323) so the
+   logo doesn't reflow when its SVG loads — avoids a small layout shift. */
+.uoa-header .nav-brand .icon,
+.uoa-header .nav-brand img {
+  width: 168px;
+  height: auto;
+  aspect-ratio: 822 / 323;
+  display: block;
+}
+
+/* The icon token renders an <img> inside the .icon span; make it fill the
+   reserved box so it doesn't start at the default 16px and reflow. */
+.uoa-header .nav-brand .icon img {
+  width: 100%;
+  height: 100%;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.uoa-header .nav-top {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  /* Full-width band; padding measured from the viewport edge so it shares the
+     logo's origin. Left = content gutter + logo clearance (168px + gap);
+     right = content gutter, keeping the row within the content column. */
+  padding: 12px var(--uoa-gutter) 12px calc(var(--uoa-gutter) + 188px);
+  background-color: var(--uoa-white);
+}
+
+.uoa-header .nav-top-tools {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 1 1 auto;
+}
+
+/* Utility menu sits left (next to logo); search + sign in pushed right */
+.uoa-header .nav-utility {
+  margin-right: auto;
+}
+
+/* Utility menu (Students / Staff / Alumni) */
+.uoa-header .nav-utility .nav-list {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- Shared nav-list reset ---- */
+/* stylelint-disable-next-line no-descending-specificity */
+.uoa-header .nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.uoa-header .nav-item {
+  position: relative;
+}
+
+/* Bilingual trigger buttons */
+.uoa-header .nav-trigger {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: none;
+  border: 0;
+  padding: 4px 0;
+  margin: 0;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  color: var(--uoa-navy);
+}
+
+.uoa-header .nav-reo {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--uoa-navy);
+}
+
+.uoa-header .nav-en {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--uoa-navy);
+}
+
+.uoa-header .nav-utility .nav-en,
+.uoa-header .nav-utility .nav-reo {
+  color: var(--uoa-navy);
+}
+
+/* Larger nav labels across both the utility and main rows */
+.uoa-header .nav-main .nav-reo,
+.uoa-header .nav-utility .nav-reo {
+  font-size: 16px;
+}
+
+.uoa-header .nav-main .nav-en,
+.uoa-header .nav-utility .nav-en {
+  font-size: 19px;
+}
+
+.uoa-header .nav-trigger:hover .nav-en,
+.uoa-header .nav-trigger:hover .nav-reo,
+.uoa-header .nav-trigger[aria-expanded='true'] .nav-en,
+.uoa-header .nav-trigger[aria-expanded='true'] .nav-reo {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ---- Search form ---- */
+.uoa-header .nav-search {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  border: 1px solid var(--uoa-navy);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--uoa-white);
+  min-width: 260px;
+  max-width: 320px;
+  flex: 0 1 320px;
+}
+
+.uoa-header .nav-search input[type='search'] {
+  flex: 1 1 auto;
+  border: 0;
+  outline: none;
+  padding: 0 16px;
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--uoa-navy);
+  background: transparent;
+  min-width: 0;
+}
+
+.uoa-header .nav-search input::placeholder {
+  color: var(--uoa-grey);
+  font-style: italic;
+}
+
+.uoa-header .nav-search-btn {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  margin: 4px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--uoa-blue);
+  color: var(--uoa-white);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uoa-header .nav-search-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---- Sign in ---- */
+.uoa-header .nav-signin {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-decoration: none;
+  color: var(--uoa-navy);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.uoa-header .nav-signin svg {
+  width: 26px;
+  height: 26px;
+  color: var(--uoa-blue);
+}
+
+/* ---- Main navigation band ---- */
+/* stylelint-disable-next-line no-descending-specificity */
+.uoa-header .nav-main {
+  background-color: var(--uoa-white);
+  position: relative; /* positioning context for full-width megamenu panels */
+}
+
+/* Panels anchor to the nav band, not the narrow trigger item */
+.uoa-header .nav-main .nav-item {
+  position: static;
+}
+
+.uoa-header .nav-main .nav-list {
+  display: flex;
+  gap: 44px;
+  padding: 0 var(--uoa-gutter) 16px calc(var(--uoa-gutter) + 188px);
+}
+
+/* ---- Megamenu panels ---- */
+.uoa-header .megamenu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background-color: var(--uoa-navy);
+  color: var(--uoa-white);
+  z-index: 50;
+}
+
+.uoa-header .megamenu[hidden] {
+  display: none;
+}
+
+.uoa-header .megamenu-inner {
+  max-width: 1132px;
+  margin: 0 auto;
+  padding: 32px 24px 40px;
+  position: relative;
+}
+
+.uoa-header .megamenu-landing {
+  display: inline-block;
+  color: var(--uoa-white);
+  font-size: 24px;
+  font-weight: 400;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+/* Landing title: te reo prefix in regular weight, English word in bold,
+   matching the source (e.g. "Pitopito kōrero News"). */
+.uoa-header .megamenu-landing-reo {
+  font-weight: 400;
+}
+
+.uoa-header .megamenu-landing-en {
+  font-weight: 700;
+}
+
+.uoa-header .megamenu-landing:hover {
+  text-decoration: underline;
+}
+
+.uoa-header .megamenu-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px 32px;
+}
+
+.uoa-header .megamenu-column {
+  min-width: 0;
+}
+
+.uoa-header .megamenu-heading {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  color: var(--uoa-white);
+}
+
+/* Short accent rule under each heading — 50px wide, 1px, cyan, matching the
+   source (not a full-width border). */
+.uoa-header .megamenu-heading::after {
+  content: "";
+  display: block;
+  width: 50px;
+  margin-top: 12px;
+  border-bottom: 1px solid var(--uoa-light-blue);
+}
+
+.uoa-header .megamenu-heading a {
+  color: var(--uoa-white);
+  text-decoration: none;
+}
+
+.uoa-header .megamenu-heading a:hover {
+  text-decoration: underline;
+}
+
+.uoa-header .megamenu-column ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.uoa-header .megamenu-column li {
+  margin-bottom: 8px;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.uoa-header .megamenu-column li a {
+  color: var(--uoa-white);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.uoa-header .megamenu-column li a:hover {
+  text-decoration: underline;
+}
+
+.uoa-header .megamenu-close {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  background: none;
+  border: 1px solid rgb(255 255 255 / 40%);
+  border-radius: 4px;
+  color: var(--uoa-white);
+  font-family: inherit;
+  font-size: 14px;
+  padding: 4px 12px;
+  cursor: pointer;
+}
+
+.uoa-header .megamenu-close:hover {
+  background: rgb(255 255 255 / 10%);
+}
+
+/* Back button is mobile-only (slide-in sub-panels); hidden on desktop */
+.uoa-header .megamenu-back {
+  display: none;
+}
+
+/* Overlay is mobile-only */
+.uoa-header .nav-overlay {
+  display: none;
+}
+
+/* ---- Hamburger (hidden on desktop) ---- */
+.uoa-header .nav-hamburger {
+  display: none;
+}
+
+/* =====================================================================
+   MOBILE (< 900px): full-screen hamburger drawer with slide-in sub-panels
+   (matches source: tapping a top item slides its sub-panel in from the
+   right with a Back button; a semi-transparent overlay sits behind).
+   ===================================================================== */
+@media (max-width: 899px) {
+  .uoa-header .nav-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    position: relative;
+    z-index: 60;
+  }
+
+  /* On mobile the logo returns to normal flow (no two-row span) */
+  .uoa-header .nav-brand {
+    position: static;
+    inset: auto;
+  }
+
+  .uoa-header .nav-brand .icon,
+  .uoa-header .nav-brand img {
+    width: auto;
+    height: 48px;
+  }
+
+  /* Show hamburger */
+  .uoa-header .nav-hamburger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    order: 3;
+  }
+
+  .uoa-header .nav-hamburger-icon,
+  .uoa-header .nav-hamburger-icon::before,
+  .uoa-header .nav-hamburger-icon::after {
+    content: '';
+    display: block;
+    width: 26px;
+    height: 3px;
+    background: var(--uoa-navy);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .uoa-header .nav-hamburger-icon {
+    position: relative;
+  }
+
+  .uoa-header .nav-hamburger-icon::before {
+    position: absolute;
+    top: -8px;
+  }
+
+  .uoa-header .nav-hamburger-icon::after {
+    position: absolute;
+    top: 8px;
+  }
+
+  /* Morph to cross when open */
+  .uoa-header.nav-open .nav-hamburger-icon {
+    background: transparent;
+  }
+
+  .uoa-header.nav-open .nav-hamburger-icon::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .uoa-header.nav-open .nav-hamburger-icon::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
+  /* Overlay behind the drawer */
+  .uoa-header .nav-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgb(0 0 0 / 50%);
+    z-index: 55;
+  }
+
+  .uoa-header .nav-overlay[hidden] {
+    display: none;
+  }
+
+  body.nav-locked {
+    overflow: hidden;
+  }
+
+  /* The drawer: the main nav (with the tools moved inside it by JS),
+     slid in from the right, full height */
+  .uoa-header .nav-main {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100dvh;
+    background: var(--uoa-white);
+    z-index: 58;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    padding: 76px 0 24px;
+  }
+
+  .uoa-header.nav-open .nav-main {
+    transform: translateX(0);
+  }
+
+  /* Tools cluster sits at the top of the drawer as a normal block.
+     No horizontal padding so the utility list spans the full drawer width;
+     padding is applied to the search/sign-in items individually. */
+  .uoa-header .nav-top-tools {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 0 0 16px;
+    border-bottom: 1px solid rgb(12 12 72 / 10%);
+    margin-bottom: 8px;
+  }
+
+  .uoa-header .nav-signin {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 8px 16px;
+  }
+
+  /* Utility + main lists stack full-width, flush */
+  .uoa-header .nav-utility,
+  .uoa-header .nav-utility .nav-list,
+  .uoa-header .nav-main .nav-list {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: none;
+  }
+
+  .uoa-header .nav-item {
+    border-bottom: 1px solid rgb(12 12 72 / 10%);
+    position: static;
+  }
+
+  /* Trigger rows: full-width tap targets with a chevron affordance */
+  .uoa-header .nav-trigger {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 6px;
+    width: 100%;
+    padding: 16px;
+    font-weight: 700;
+  }
+
+  .uoa-header .nav-trigger .nav-reo,
+  .uoa-header .nav-trigger .nav-en {
+    font-weight: 700;
+  }
+
+  .uoa-header .nav-main .nav-trigger::after {
+    content: '›';
+    margin-left: auto;
+    font-size: 20px;
+    color: var(--uoa-navy);
+  }
+
+  /* Sub-panel: covers the drawer, slides in from the right */
+  .uoa-header .megamenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: auto;
+    width: 100vw;
+    height: 100dvh;
+    margin: 0;
+    z-index: 59;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .uoa-header .megamenu[hidden] {
+    display: block; /* keep in flow for the slide transition */
+  }
+
+  /* Open sub-panel slides fully into view (high specificity to beat base) */
+  .uoa-header .nav-main .nav-item .nav-trigger[aria-expanded='true'] + .megamenu {
+    transform: translateX(0) !important;
+  }
+
+  .uoa-header .megamenu-inner {
+    padding: 16px;
+    max-width: none;
+  }
+
+  .uoa-header .megamenu-columns {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Back button visible on mobile */
+  .uoa-header .megamenu-back {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid rgb(255 255 255 / 20%);
+    color: var(--uoa-white);
+    font-family: inherit;
+    font-size: 16px;
+    padding: 12px 0;
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
+
+  /* Desktop close button not needed on mobile */
+  .uoa-header .megamenu-close {
+    display: none;
+  }
+
+  .uoa-header .nav-search {
+    width: 100%;
+    max-width: none;
+    flex: 0 0 auto;
+    height: 50px;
+    box-sizing: border-box;
+    margin: 0 16px;
+  }
+}
+
+/* Tablet fine-tuning */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .uoa-header .nav-main .nav-list {
+    padding-left: 24px;
+    gap: 24px;
+  }
+
+  .uoa-header .megamenu-columns {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

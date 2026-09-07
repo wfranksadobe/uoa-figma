@@ -1,0 +1,61 @@
+{
+  "definitions": [
+    {
+      "title": "Hero Carousel",
+      "id": "hero-carousel",
+      "model": "hero-carousel",
+      "plugins": {
+        "da": {
+          "name": "hero-carousel",
+          "rows": 1,
+          "columns": 2
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "hero-carousel",
+      "fields": [
+        {
+          "component": "reference",
+          "name": "image",
+          "label": "Slide image",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "category",
+          "label": "Category label",
+          "valueType": "string",
+          "description": "Small pill above the heading (e.g. University News)."
+        },
+        {
+          "component": "text",
+          "name": "heading",
+          "label": "Heading",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "date",
+          "label": "Date",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "text",
+          "label": "Description",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "Read more link",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

@@ -1,0 +1,53 @@
+{
+  "definitions": [
+    {
+      "title": "Quote",
+      "id": "quote",
+      "model": "quote",
+      "plugins": {
+        "da": {
+          "name": "quote",
+          "rows": 3,
+          "columns": 0,
+          "fields": [
+            { "name": "quote", "selector": "div:nth-child(1)" },
+            { "name": "who", "selector": "div:nth-child(2)" },
+            { "name": "position", "selector": "div:nth-child(3)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "quote",
+      "fields": [
+        {
+          "component": "richtext",
+          "name": "quote",
+          "value": "",
+          "label": "Quote",
+          "valueType": "string",
+          "required": true
+        },
+        {
+          "component": "text",
+          "name": "who",
+          "value": "",
+          "label": "Who",
+          "valueType": "string",
+          "description": "The name of the person quoted (shown bold)."
+        },
+        {
+          "component": "text",
+          "name": "position",
+          "value": "",
+          "label": "Position",
+          "valueType": "string",
+          "description": "Their role or organisation."
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

@@ -1,0 +1,42 @@
+{
+  "definitions": [
+    {
+      "title": "Experience",
+      "id": "experience",
+      "model": "experience",
+      "plugins": {
+        "da": {
+          "name": "experience",
+          "rows": 1,
+          "columns": 2
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "experience",
+      "fields": [
+        {
+          "component": "reference",
+          "name": "image",
+          "label": "Poster image",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "video",
+          "label": "Video link",
+          "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "text",
+          "label": "Title + description",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

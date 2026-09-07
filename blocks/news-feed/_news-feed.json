@@ -1,0 +1,55 @@
+{
+  "definitions": [
+    {
+      "title": "News Feed",
+      "id": "news-feed",
+      "model": "news-feed",
+      "plugins": {
+        "da": {
+          "name": "news-feed",
+          "rows": 1,
+          "columns": 2
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "news-feed",
+      "fields": [
+        {
+          "component": "text",
+          "name": "tag",
+          "value": "",
+          "label": "Tag",
+          "valueType": "string",
+          "description": "The article tag/label to list (e.g. Sustainable impact). Matches the Tags metadata on articles."
+        },
+        {
+          "component": "text",
+          "name": "count",
+          "value": "3",
+          "label": "Count",
+          "valueType": "number",
+          "description": "How many articles to show (default 3)."
+        },
+        {
+          "component": "text",
+          "name": "heading",
+          "value": "",
+          "label": "Heading",
+          "valueType": "string",
+          "description": "Section heading. Defaults to the Tag if left empty."
+        },
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "Link",
+          "valueType": "string",
+          "description": "Optional 'See more' destination for this tag."
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

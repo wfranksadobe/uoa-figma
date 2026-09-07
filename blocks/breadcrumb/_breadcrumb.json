@@ -1,0 +1,32 @@
+{
+  "definitions": [
+    {
+      "title": "Breadcrumb",
+      "id": "breadcrumb",
+      "model": "breadcrumb",
+      "plugins": {
+        "da": {
+          "name": "breadcrumb",
+          "rows": 1,
+          "columns": 2
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "breadcrumb",
+      "fields": [
+        {
+          "component": "text",
+          "name": "depth",
+          "value": "",
+          "label": "Depth",
+          "valueType": "number",
+          "description": "How many levels to show, counting back from the current page. Leave empty or 0 to show the full trail."
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

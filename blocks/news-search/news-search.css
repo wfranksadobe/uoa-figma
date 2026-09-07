@@ -1,0 +1,73 @@
+/* News search + filter bar (News Aug 2026 redesign). */
+
+.news-search {
+  max-width: var(--uoa-content-max);
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.news-search .news-search-form {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.news-search .news-search-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.news-search .news-search-input {
+  flex: 1;
+  height: 52px;
+  padding: 0 20px;
+  border: 1px solid var(--uoa-hairline);
+  border-radius: var(--uoa-radius-pill);
+  background: var(--uoa-grey-band);
+  font-family: var(--uoa-font-body);
+  font-size: 16px;
+  color: var(--uoa-ink);
+}
+
+.news-search .news-search-input:focus {
+  border-color: var(--uoa-navy);
+  outline: none;
+}
+
+.news-search .news-search-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--uoa-blue);
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.news-search .news-search-filter {
+  height: 52px;
+  padding: 0 28px;
+  border: 0;
+  border-radius: var(--uoa-radius-pill);
+  background: var(--uoa-navy);
+  font-family: var(--uoa-font-body);
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+}
+
+.news-search .news-search-submit:focus-visible,
+.news-search .news-search-filter:focus-visible {
+  outline: 3px solid var(--uoa-blue);
+  outline-offset: 2px;
+}

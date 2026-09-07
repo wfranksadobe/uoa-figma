@@ -1,0 +1,89 @@
+/* "Find an expert" (News Aug 2026 redesign): 4-up expert cards. */
+
+.find-an-expert {
+  max-width: var(--uoa-content-max);
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.find-an-expert .find-an-expert-header h2,
+.find-an-expert .find-an-expert-header h3 {
+  margin: 0 0 24px;
+  font-family: var(--uoa-font-display);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--uoa-navy);
+}
+
+.find-an-expert .find-an-expert-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px 30px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.find-an-expert .find-an-expert-card {
+  margin: 0;
+}
+
+.find-an-expert .find-an-expert-photo {
+  margin: 0 0 14px;
+  overflow: hidden;
+  border-radius: var(--uoa-radius-card);
+}
+
+.find-an-expert .find-an-expert-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.find-an-expert .find-an-expert-body h3,
+.find-an-expert .find-an-expert-body h4 {
+  margin: 0 0 6px;
+  font-family: var(--uoa-font-body);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--uoa-navy);
+}
+
+.find-an-expert .find-an-expert-body p {
+  margin: 0;
+  font-family: var(--uoa-font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--uoa-muted);
+}
+
+.find-an-expert .find-an-expert-more {
+  margin: 36px 0 0;
+  text-align: center;
+}
+
+.find-an-expert .find-an-expert-more a {
+  display: inline-block;
+  padding: 14px 40px;
+  border: 2px solid var(--uoa-navy);
+  border-radius: var(--uoa-radius-pill);
+  font-family: var(--uoa-font-body);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--uoa-navy);
+  text-decoration: none;
+}
+
+.find-an-expert .find-an-expert-more a:hover {
+  background: var(--uoa-navy);
+  color: #fff;
+}
+
+@media (min-width: 600px) {
+  .find-an-expert .find-an-expert-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .find-an-expert .find-an-expert-grid { grid-template-columns: repeat(4, 1fr); }
+}

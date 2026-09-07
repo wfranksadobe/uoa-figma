@@ -1,0 +1,104 @@
+/* "Experience the University" band (News Aug 2026 redesign). */
+
+.experience-container > .experience-wrapper {
+  max-width: none;
+}
+
+.experience {
+  max-width: var(--uoa-content-max);
+  margin: 0 auto;
+  padding: 56px 24px;
+}
+
+.experience .experience-media {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--uoa-radius-card);
+  aspect-ratio: 16 / 9;
+  background: var(--uoa-navy);
+}
+
+.experience .experience-media img,
+.experience .experience-media iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
+.experience .experience-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  padding: 0;
+  transform: translate(-50%, -50%);
+  border: 0;
+  border-radius: 50%;
+  background: rgb(12 12 72 / 82%);
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.experience .experience-play:hover {
+  background: var(--uoa-navy);
+}
+
+.experience .experience-content h2,
+.experience .experience-content h3 {
+  margin: 0 0 12px;
+  font-family: var(--uoa-font-display);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--uoa-navy);
+}
+
+.experience .experience-content p {
+  margin: 0 0 12px;
+  font-family: var(--uoa-font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--uoa-muted);
+}
+
+.experience .experience-content a {
+  display: inline-block;
+  margin: 8px 12px 0 0;
+  padding: 13px 30px;
+  border: 2px solid var(--uoa-navy);
+  border-radius: var(--uoa-radius-pill);
+  font-family: var(--uoa-font-body);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--uoa-navy);
+  text-decoration: none;
+}
+
+.experience .experience-content a:first-of-type {
+  background: var(--uoa-navy);
+  color: #fff;
+}
+
+.experience .experience-content a:hover {
+  opacity: 0.9;
+}
+
+/* The whole band sits on a grey background via the section. */
+.section.experience-container {
+  background: var(--uoa-grey-band);
+}
+
+@media (min-width: 900px) {
+  .experience {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+}

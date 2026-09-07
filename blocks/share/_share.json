@@ -1,0 +1,31 @@
+{
+  "definitions": [
+    {
+      "title": "Share",
+      "id": "share",
+      "model": "share",
+      "plugins": {
+        "da": {
+          "name": "share",
+          "rows": 1,
+          "columns": 1
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "share",
+      "fields": [
+        {
+          "component": "text",
+          "name": "classes",
+          "label": "Variant",
+          "valueType": "string",
+          "description": "Leave empty for the default, or 'colour' for the navy variant."
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

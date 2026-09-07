@@ -1,0 +1,30 @@
+{
+  "definitions": [
+    {
+      "title": "Gallery",
+      "id": "gallery",
+      "model": "gallery",
+      "plugins": {
+        "da": {
+          "name": "gallery",
+          "rows": 1,
+          "columns": 1
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "gallery",
+      "fields": [
+        {
+          "component": "reference",
+          "name": "image",
+          "label": "Image",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

@@ -1,0 +1,53 @@
+{
+  "definitions": [
+    {
+      "title": "Annotated Image",
+      "id": "annotated-image",
+      "model": "annotated-image",
+      "plugins": {
+        "da": {
+          "name": "annotated-image",
+          "rows": 3,
+          "columns": 0,
+          "fields": [
+            { "name": "image", "selector": "div:nth-child(1)" },
+            { "name": "caption", "selector": "div:nth-child(2)" },
+            { "name": "alt", "selector": "div:nth-child(3)" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "annotated-image",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Image",
+          "multi": false,
+          "required": true
+        },
+        {
+          "component": "text",
+          "name": "caption",
+          "value": "",
+          "label": "Image description",
+          "valueType": "string",
+          "description": "Caption shown below the image."
+        },
+        {
+          "component": "text",
+          "name": "alt",
+          "value": "",
+          "label": "Alt text",
+          "valueType": "string",
+          "description": "Optional alternative text for accessibility. Defaults to the image's own alt."
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

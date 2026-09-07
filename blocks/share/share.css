@@ -1,0 +1,72 @@
+/* "Share" control (News Aug 2026 redesign) + colour variant. */
+
+.share {
+  padding: 20px 24px;
+  border-radius: 14px;
+  background: var(--uoa-grey-band);
+}
+
+.share .share-title {
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--uoa-blue);
+  font-family: var(--uoa-font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--uoa-navy);
+}
+
+.share .share-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.share .share-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--uoa-navy);
+  font-family: var(--uoa-font-body);
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.share .share-button:hover {
+  background: var(--uoa-blue);
+}
+
+.share .share-copy.is-copied {
+  background: var(--uoa-blue);
+}
+
+.share .share-button:focus-visible {
+  outline: 3px solid var(--uoa-blue);
+  outline-offset: 2px;
+}
+
+/* Colour variant: navy panel with white-bordered buttons. */
+.share.colour {
+  background: var(--uoa-navy);
+}
+
+.share.colour .share-title {
+  color: #fff;
+}
+
+.share.colour .share-button {
+  background: rgb(255 255 255 / 12%);
+  border: 1.5px solid rgb(255 255 255 / 60%);
+}
+
+.share.colour .share-button:hover {
+  background: #fff;
+  color: var(--uoa-navy);
+}

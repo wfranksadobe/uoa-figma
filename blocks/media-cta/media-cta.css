@@ -1,0 +1,51 @@
+/* Media advisers CTA banner (News Aug 2026 redesign). */
+
+.media-cta {
+  max-width: var(--uoa-content-max);
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.media-cta .media-cta-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 28px 36px;
+  border-radius: 16px;
+  background: var(--uoa-navy);
+  color: #fff;
+}
+
+.media-cta .media-cta-text p {
+  margin: 0;
+  font-family: var(--uoa-font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.media-cta .media-cta-button {
+  display: inline-block;
+  flex-shrink: 0;
+  padding: 13px 30px;
+  border-radius: var(--uoa-radius-pill);
+  background: #fff;
+  font-family: var(--uoa-font-body);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--uoa-navy);
+  text-decoration: none;
+}
+
+.media-cta .media-cta-button:hover {
+  background: var(--uoa-lavender);
+}
+
+@media (min-width: 768px) {
+  .media-cta .media-cta-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

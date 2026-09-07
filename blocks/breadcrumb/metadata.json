@@ -1,0 +1,4 @@
+{
+  "name": "Breadcrumb",
+  "description": "Breadcrumb trail generated from the page path, with a configurable depth."
+}

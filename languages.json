@@ -1,0 +1,10 @@
+{
+  "default": "en",
+  "languages": [
+    { "code": "en", "hreflang": "en-NZ", "label": "English", "dir": "ltr", "populated": true },
+    { "code": "mi", "hreflang": "mi-NZ", "label": "Te reo Māori", "dir": "ltr", "populated": false },
+    { "code": "zh", "hreflang": "zh-Hans", "label": "简体中文", "dir": "ltr", "populated": false },
+    { "code": "ko", "hreflang": "ko-KR", "label": "한국어", "dir": "ltr", "populated": false },
+    { "code": "ja", "hreflang": "ja-JP", "label": "日本語", "dir": "ltr", "populated": false }
+  ]
+}

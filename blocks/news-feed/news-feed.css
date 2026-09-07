@@ -1,0 +1,171 @@
+/* University of Auckland news feed — matches the source category sections on
+   auckland.ac.nz/en/news: a heading, a responsive grid of article cards
+   (image 16:9 rounded, Inter title, blue date, grey teaser) and a "See more"
+   pill button. Aligned to the page content column like the nav/hero. */
+
+/* Full-bleed section: the boilerplate constrains .section > div to 1200px, so
+   let the news-feed wrapper span the viewport and manage its own gutter. This
+   lets the alternating grey background run edge to edge. */
+main > .section.news-feed-container {
+  margin: 0;
+}
+
+main > .section.news-feed-container > div {
+  max-width: none;
+  padding: 0;
+}
+
+/* Alternating bands (source alternation): the first visible section is grey,
+   then white, then grey… matching auckland.ac.nz/en/news. */
+main > .section.news-feed-section--alt {
+  background-color: #f3f3f6;
+}
+
+.news-feed {
+  --news-content-max: 1264px;
+  --news-side-pad: 24px;
+  --news-gutter: max(
+    var(--news-side-pad),
+    calc((100% - var(--news-content-max)) / 2 + var(--news-side-pad))
+  );
+
+  padding: 48px var(--news-gutter);
+  color: #0c0c48;
+}
+
+/* Section heading — InterDisplay 600 navy, line-height 1.31, matching the
+   source (auckland.ac.nz/en/news): 30px on mobile, scaling to 32px on desktop. */
+.news-feed .news-feed-header {
+  margin: 0 0 36px;
+}
+
+.news-feed .news-feed-heading {
+  margin: 0;
+  font-family: interdisplay, inter, sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.31;
+  color: #0c0c48;
+}
+
+/* The heading may wrap a link; commerce global styles force anchors to 16px
+   adobe-clean, so the link must explicitly inherit the heading's font. */
+.news-feed .news-feed-heading a {
+  font: inherit;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Card grid — one column on mobile, three across on desktop. */
+.news-feed .news-feed-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px 30px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.news-feed .news-feed-card {
+  margin: 0;
+}
+
+.news-feed .news-feed-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.news-feed .news-feed-card-image {
+  margin: 0 0 15px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.news-feed .news-feed-card-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* Card title — Inter 26/700 navy. */
+.news-feed .news-feed-card-title {
+  margin: 0;
+  font-family: inter, sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #0c0c48;
+}
+
+/* Date — Inter 16 blue. */
+.news-feed .news-feed-card-date {
+  margin: 9px 0 0;
+  font-family: inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.69;
+  color: #1f2bd4;
+}
+
+/* Teaser — Inter 16 grey. */
+.news-feed .news-feed-card-desc {
+  margin: 9px 0 0;
+  font-family: inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.69;
+  color: #4a4a4c;
+}
+
+/* "See more" pill button — centred below the cards, matches the source. */
+.news-feed .news-feed-more {
+  margin: 36px 0 0;
+  text-align: center;
+}
+
+.news-feed .news-feed-more a {
+  display: inline-block;
+  padding: 15px 45px;
+  border: 2px solid #0c0c48;
+  border-radius: 30px;
+  font-family: inter, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #0c0c48;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.news-feed .news-feed-empty {
+  margin: 0;
+  font-family: inter, sans-serif;
+  color: #4a4a4c;
+}
+
+/* Hover states (grouped last to keep specificity non-descending). */
+.news-feed .news-feed-heading a:hover {
+  text-decoration: underline;
+}
+
+.news-feed .news-feed-card-link:hover .news-feed-card-title {
+  text-decoration: underline;
+}
+
+.news-feed .news-feed-more a:hover {
+  background-color: #0c0c48;
+  color: #fff;
+}
+
+@media (min-width: 900px) {
+  .news-feed .news-feed-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Source scales the section heading up to 32px on desktop. */
+  .news-feed .news-feed-heading {
+    font-size: 32px;
+  }
+}

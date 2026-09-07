@@ -1,0 +1,57 @@
+/* "Key Points" / "In Brief" callout (News Aug 2026 redesign):
+   navy tab header overlapping a lavender box of ticked bullets. */
+
+.key-points {
+  margin: 0 0 28px;
+}
+
+.key-points .key-points-tab {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  margin: 0 0 -18px 8px;
+  padding: 10px 26px;
+  border-radius: var(--uoa-radius-pill);
+  background: var(--uoa-navy);
+  font-family: var(--uoa-font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.key-points .key-points-body {
+  padding: 34px 28px 24px;
+  border-radius: 14px;
+  background: var(--uoa-lavender-soft);
+}
+
+.key-points .key-points-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.key-points .key-points-list li {
+  position: relative;
+  margin: 0 0 12px;
+  padding-left: 30px;
+  font-family: var(--uoa-font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--uoa-ink);
+}
+
+.key-points .key-points-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* Tick marker in the brand blue. */
+.key-points .key-points-list li::before {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  color: var(--uoa-blue);
+  font-size: 15px;
+  font-weight: 700;
+  content: '\2713';
+}

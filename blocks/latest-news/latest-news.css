@@ -1,0 +1,177 @@
+/* University of Auckland "Latest News" grid (News Aug 2026 redesign):
+   heading, category filter chips, and a responsive 3-across card grid. */
+
+.latest-news {
+  max-width: var(--uoa-content-max);
+  margin: 0 auto;
+  padding: 48px 24px;
+  color: var(--uoa-ink);
+}
+
+.latest-news .latest-news-header {
+  margin: 0 0 20px;
+}
+
+.latest-news .latest-news-heading {
+  margin: 0;
+  font-family: var(--uoa-font-display);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.31;
+  color: var(--uoa-navy);
+}
+
+/* Filter chips */
+.latest-news .latest-news-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 32px;
+}
+
+.latest-news .latest-news-chip {
+  padding: 8px 18px;
+  border: 1px solid var(--uoa-hairline);
+  border-radius: var(--uoa-radius-pill);
+  background: #fff;
+  font-family: var(--uoa-font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--uoa-ink);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.latest-news .latest-news-chip:hover {
+  border-color: var(--uoa-navy);
+}
+
+.latest-news .latest-news-chip.is-active {
+  border-color: var(--uoa-navy);
+  background: var(--uoa-navy);
+  color: #fff;
+}
+
+.latest-news .latest-news-chip-more {
+  color: var(--uoa-blue);
+  font-weight: 700;
+}
+
+/* Card grid */
+.latest-news .latest-news-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px 30px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.latest-news .latest-news-card {
+  margin: 0;
+}
+
+.latest-news .latest-news-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.latest-news .latest-news-card-image {
+  margin: 0 0 14px;
+  overflow: hidden;
+  border-radius: var(--uoa-radius-card);
+}
+
+.latest-news .latest-news-card-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.latest-news .latest-news-card-tag {
+  display: inline-block;
+  margin: 0 0 8px;
+  padding: 4px 12px;
+  border-radius: var(--uoa-radius-pill);
+  background: var(--uoa-pill-bg);
+  font-family: var(--uoa-font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--uoa-navy);
+}
+
+.latest-news .latest-news-card-title {
+  margin: 0;
+  font-family: var(--uoa-font-body);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--uoa-navy);
+}
+
+.latest-news .latest-news-card-date {
+  margin: 8px 0 0;
+  font-family: var(--uoa-font-body);
+  font-size: 15px;
+  color: var(--uoa-blue);
+}
+
+.latest-news .latest-news-card-desc {
+  margin: 8px 0 0;
+  font-family: var(--uoa-font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--uoa-muted);
+}
+
+.latest-news .latest-news-empty {
+  font-family: var(--uoa-font-body);
+  color: var(--uoa-muted);
+}
+
+/* Browse all news button */
+.latest-news .latest-news-browse {
+  margin: 40px 0 0;
+  text-align: center;
+}
+
+.latest-news .latest-news-browse a {
+  display: inline-block;
+  padding: 14px 40px;
+  border: 2px solid var(--uoa-navy);
+  border-radius: var(--uoa-radius-pill);
+  font-family: var(--uoa-font-body);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--uoa-navy);
+  text-decoration: none;
+}
+
+.latest-news .latest-news-browse a:hover {
+  background: var(--uoa-navy);
+  color: #fff;
+}
+
+.latest-news .latest-news-card-link:hover .latest-news-card-title {
+  text-decoration: underline;
+}
+
+.latest-news .latest-news-chip:focus-visible,
+.latest-news .latest-news-browse a:focus-visible {
+  outline: 3px solid var(--uoa-blue);
+  outline-offset: 2px;
+}
+
+@media (min-width: 600px) {
+  .latest-news .latest-news-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .latest-news .latest-news-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

@@ -1,0 +1,109 @@
+/* University of Auckland hero — replicates the source (auckland.ac.nz/en/news)
+   exactly at every viewport.
+
+   The banner box is a fixed height per breakpoint (261 / 300 / 336px) and the
+   image fills it via object-fit: cover anchored to the TOP, so it is never
+   zoomed and the grassy foreground is cropped off the bottom.
+
+   Text (measured from the source):
+     <768px : h1 30/39 600, p 18/1.69 400, 9px gap,  box 261px, centred 50%
+     ≥768px : h1 40/48 600, p 20/1.69 400, 27px gap, box 300px, centred 50%
+     ≥992px : same type,                              box 336px, centred 40%
+   The heading uses InterDisplay (falls back to Inter), the text uses Inter,
+   both white. The paragraph has no width cap, so it never wraps early. */
+
+.hero-container .hero-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.hero {
+  /* Align the text to the page content column (1264px), same as the nav. */
+  --hero-content-max: 1264px;
+  --hero-side-pad: 24px;
+  --hero-gutter: max(var(--hero-side-pad), calc((100% - var(--hero-content-max)) / 2 + var(--hero-side-pad)));
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* text centred vertically (50%) */
+  height: 261px; /* mobile banner height */
+  padding: 0 var(--hero-gutter);
+  box-sizing: border-box;
+  overflow: hidden; /* clip the taller image at the bottom */
+}
+
+.hero picture {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+}
+
+.hero img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Darkening overlay — matches the source: solid black at 40% opacity over the
+   whole image so the white text stays legible. Sits above the image (z -2) and
+   below the text (normal flow). */
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: #000;
+  opacity: 0.4;
+}
+
+/* Heading — InterDisplay (falls back to Inter), 30/39 600 on mobile */
+.hero h1 {
+  margin: 0 0 9px;
+  max-width: var(--hero-content-max);
+  font-family: interdisplay, inter, sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #fff;
+}
+
+/* Supporting text — Inter, 18px / 1.69 / 400; no width cap so it stays on one
+   line as long as the column allows (matches the source, no early wrapping). */
+.hero p {
+  margin: 0;
+  max-width: var(--hero-content-max);
+  font-family: inter, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.69;
+  color: #fff;
+}
+
+/* Tablet and up (source md breakpoint, 768px): larger box and type. */
+@media (min-width: 768px) {
+  .hero {
+    height: 300px;
+  }
+
+  .hero h1 {
+    margin-bottom: 27px;
+    font-size: 40px;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 20px;
+  }
+}
+
+/* Desktop (source lg breakpoint, 992px): taller box and the text centred at
+   40% of the banner rather than 50% — padding-bottom biases it upward. */
+@media (min-width: 992px) {
+  .hero {
+    height: 336px;
+    padding-bottom: 67px; /* 20% of 336px shifts the centre from 50% to 40% */
+  }
+}

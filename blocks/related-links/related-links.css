@@ -1,0 +1,43 @@
+/* "Related Links" side box (News Aug 2026 redesign). */
+
+.related-links {
+  padding: 22px 24px;
+  border-radius: 14px;
+  background: var(--uoa-grey-band);
+}
+
+.related-links .related-links-title {
+  margin: 0 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--uoa-blue);
+  font-family: var(--uoa-font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--uoa-navy);
+}
+
+.related-links .related-links-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.related-links .related-links-list li {
+  margin: 0 0 12px;
+}
+
+.related-links .related-links-list li:last-child {
+  margin-bottom: 0;
+}
+
+.related-links .related-links-list a {
+  font-family: var(--uoa-font-body);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--uoa-blue);
+  text-decoration: none;
+}
+
+.related-links .related-links-list a:hover {
+  text-decoration: underline;
+}

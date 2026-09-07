@@ -1,0 +1,31 @@
+/* University of Auckland annotated image — rounded image with a caption below,
+   matching the article figure styling on the source. */
+
+.annotated-image {
+  margin: 0 0 24px;
+}
+
+.annotated-image .annotated-image-figure {
+  margin: 0;
+}
+
+.annotated-image .annotated-image-figure picture {
+  display: block;
+  margin: 0 0 12px;
+}
+
+.annotated-image .annotated-image-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+/* Caption — smaller, navy, distinct from body text (matches the source). */
+.annotated-image .annotated-image-caption {
+  font-family: inter, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #0c0c48;
+}
