@@ -313,24 +313,58 @@ function decorateFigmaArticle(main) {
   main.prepend(titleSection);
 
   // Promote the lead image to a full-bleed hero (unless a non-hero variant).
-  const pictureP = bodyWrap.querySelector(':scope > p picture')?.closest('p');
-  if (pictureP && !noHero && !nonHeroLead) {
+  // Two lead-image shapes are supported:
+  //   1. an inline body picture: <p><picture>…</picture></p> (+ optional <em> caption)
+  //   2. the first `annotated-image` block (migrated articles): row 1 = picture,
+  //      row 2 = caption. NB this runs before the block's own async decorate(),
+  //      so the block is still in raw table form here.
+  if (!noHero && !nonHeroLead) {
     const hero = document.createElement('div');
     hero.className = 'section figma-hero-container';
     const heroInner = document.createElement('div');
     heroInner.className = 'figma-hero';
-    heroInner.append(pictureP.querySelector('picture'));
-    const capP = pictureP.nextElementSibling;
-    if (capP && capP.matches('p') && capP.firstElementChild?.tagName === 'EM') {
-      const cap = document.createElement('p');
-      cap.className = 'figma-hero-caption';
-      cap.textContent = capP.textContent.trim();
-      heroInner.append(cap);
-      capP.remove();
+
+    const pictureP = bodyWrap.querySelector(':scope > p picture')?.closest('p');
+    const annImg = main.querySelector('.annotated-image');
+    let promoted = false;
+
+    if (pictureP) {
+      heroInner.append(pictureP.querySelector('picture'));
+      const capP = pictureP.nextElementSibling;
+      if (capP && capP.matches('p') && capP.firstElementChild?.tagName === 'EM') {
+        const cap = document.createElement('p');
+        cap.className = 'figma-hero-caption';
+        cap.textContent = capP.textContent.trim();
+        heroInner.append(cap);
+        capP.remove();
+      }
+      pictureP.remove();
+      promoted = true;
+    } else if (annImg) {
+      const picture = annImg.querySelector('picture');
+      if (picture) {
+        heroInner.append(picture);
+        const capText = [...annImg.children][1]?.textContent.trim();
+        if (capText) {
+          const cap = document.createElement('p');
+          cap.className = 'figma-hero-caption';
+          cap.textContent = capText;
+          heroInner.append(cap);
+        }
+        // remove the now-emptied lead block and its section wrapper if empty
+        const wrapper = annImg.closest('.annotated-image-wrapper') || annImg.parentElement;
+        const section = annImg.closest('.section');
+        annImg.remove();
+        if (wrapper && !wrapper.children.length) wrapper.remove();
+        if (section && !section.querySelector(':scope > *')) section.remove();
+        promoted = true;
+      }
     }
-    hero.append(heroInner);
-    titleSection.after(hero);
-    pictureP.remove();
+
+    if (promoted) {
+      hero.append(heroInner);
+      titleSection.after(hero);
+    }
   }
 
   // Wrap the remaining content into a two-column body with a right rail.
