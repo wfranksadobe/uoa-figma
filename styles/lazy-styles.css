@@ -232,13 +232,23 @@ body.news-article-figma .figma-hero img {
 }
 
 body.news-article-figma .figma-hero .figma-hero-caption {
-  display: inline-block;
-  padding: 6px 14px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  max-width: 80%;
+  padding: 8px 16px;
   margin: 0;
   background: #fff;
   font-family: var(--uoa-font-body);
   font-size: 13px;
+  line-height: 1.4;
   color: var(--uoa-muted);
+}
+
+@media (min-width: 900px) {
+  body.news-article-figma .figma-hero .figma-hero-caption {
+    max-width: 60%;
+  }
 }
 
 /* Two-column body: article (max 652) + a ~258px right rail. */
